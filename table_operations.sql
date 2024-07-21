@@ -103,3 +103,31 @@ VALUES
     (100, nextval('purchase_item_id'), 'Speaker', 250);
 
 SELECT * FROM purchase_details;
+
+-- ALTER TABLE
+-- Syntax: ALTER TABLE table_name action;
+
+CREATE Table link(
+    link_id SERIAL PRIMARY KEY,
+    link_name VARCHAR(500) NOT NULL,
+    url VARCHAR(1024) NOT NULL UNIQUE
+);
+
+
+ALTER TABLE link ADD COLUMN active_link BOOLEAN;
+ALTER Table link add COLUMN is_visited BOOLEAN DEFAULT false;
+
+-- Rremove the active link column
+
+ALTER TABLE link DROP active_link;
+
+ALTER Table link RENAME link_name to link_title;
+
+ALTER Table link ADD COLUMN target VARCHAR(12);
+
+
+ALTER TABLE link alter COLUMN target set DEFAULT '_blank';
+
+INSERT INTO link (link_title, url)
+VALUES('PostgreSQL Tutorial', 'https://www.geeksforgeeks.org/');
+SELECT * FROM link;
