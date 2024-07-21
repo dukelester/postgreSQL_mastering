@@ -63,3 +63,43 @@ from students WHERE LENGTH(last_name) > 10 and first_name LIKE '%__e' ORDER BY f
 
 
 SELECT * FROM names_ending_with_e;
+
+-- Creating a sequence
+
+CREATE SEQUENCE my_sequence INCREMENT 5 START 10;
+
+SELECT nextval('my_sequence');
+
+CREATE SEQUENCE three INCREMENT -1 MINVALUE 1 MAXVALUE 3 START 3 CYCLE;
+
+SELECT nextval('three');
+
+CREATE SEQUENCE range_values INCREMENT 10 MINVALUE 20 MAXVALUE 900 CYCLE;
+
+SELECT nextval('range_values');
+
+-- create a sequence asociated with a table column
+
+CREATE Table purchase_details(
+    purchase_id SERIAL,
+    item_id INT NOT NULL,
+    product_id INT,
+    product_name TEXT NOT NULL,
+    price DECIMAL(10, 2)  NOT NULL,
+    PRIMARY KEY(purchase_id, item_id)
+);
+
+-- Create a sequence associated with the item id
+
+CREATE SEQUENCE purchase_item_id START 10 INCREMENT 10 MINVALUE 10
+OWNED BY purchase_details.item_id;
+
+-- Insert data into the table
+INSERT INTO 
+    purchase_details(purchase_id, item_id, product_name, price)
+VALUES
+    (100, nextval('purchase_item_id'), 'DVD Player', 100),
+    (100, nextval('purchase_item_id'), 'Android TV', 550),
+    (100, nextval('purchase_item_id'), 'Speaker', 250);
+
+SELECT * FROM purchase_details;
