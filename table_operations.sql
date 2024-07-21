@@ -131,3 +131,29 @@ ALTER TABLE link alter COLUMN target set DEFAULT '_blank';
 INSERT INTO link (link_title, url)
 VALUES('PostgreSQL Tutorial', 'https://www.geeksforgeeks.org/');
 SELECT * FROM link;
+
+-- ADD COLUMN
+-- ALTER TABLE table_name
+-- ADD COLUMN new_column_name data_type;
+
+CREATE table village (
+    village_id SERIAL PRIMARY KEY,
+    village_name VARCHAR(200)
+);
+
+ALTER Table village ADD COLUMN district VARCHAR;
+ALTER Table village ADD COLUMN zone VARCHAR(100);
+
+ALTER Table village ADD COLUMN country VARCHAR(355);
+ALTER Table village ADD COLUMN market VARCHAR(200);
+
+SELECT * FROM village;
+
+CREATE TABLE cars(
+    car_id SERIAL PRIMARY KEY,
+    car_name VARCHAR NOT NULL
+);
+
+ALTER Table cars ADD COLUMN model VARCHAR(300) DEFAULT 'toyota';
+
+SELECT * FROM cars;
