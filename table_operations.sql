@@ -192,3 +192,11 @@ SELECT * FROM books;
 ALTER TABLE books DROP COLUMN isbn;
 
 SELECT * FROM books;
+
+--  Rename Table
+-- alter table table_name rename to new_name;
+
+ALTER TABLE books RENAME TO my_books;
+
+
+SELECT * FROM my_books;
