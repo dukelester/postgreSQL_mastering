@@ -157,3 +157,38 @@ CREATE TABLE cars(
 ALTER Table cars ADD COLUMN model VARCHAR(300) DEFAULT 'toyota';
 
 SELECT * FROM cars;
+
+-- Drop column
+-- alter table table_name drop column column_name
+
+CREATE TABLE publishers (
+    publisher_id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE categories(
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE books (
+    book_id serial PRIMARY KEY,
+    title VARCHAR NOT NULL,
+    isbn VARCHAR NOT NULL,
+    published_date DATE NOT NULL,
+    description VARCHAR,
+    category_id INT NOT NULL,
+    publisher_id INT NOT NULL,
+    FOREIGN KEY (publisher_id) REFERENCES publishers (publisher_id),
+    FOREIGN KEY (category_id) REFERENCES categories (category_id)
+);
+
+
+SELECT * FROM publishers;
+
+SELECT * FROM books;
+
+
+ALTER TABLE books DROP COLUMN isbn;
+
+SELECT * FROM books;
