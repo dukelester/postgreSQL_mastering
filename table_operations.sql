@@ -223,3 +223,26 @@ SELECT * FROM students;
 TRUNCATE TABLE link;
 
 SELECT * FROM link;
+
+-- Copy table
+-- create table new_table as table old_table
+
+CREATE TABLE my_students AS Table students;
+
+SELECT * FROM my_students;
+CREATE TABLE profile as table account;
+
+-- Create with no data
+CREATE TABLE other_studenst as table students with no data;
+
+SELECT * FROM other_studenst;
+
+ALTER TABLE other_studenst RENAME TO other_students;
+
+-- Using the where clause
+
+CREATE TABLE students_start_with_d as select * from students where first_name like 'D%';
+
+SELECT * FROM students_start_with_d;
+
+DROP Table students_start_with_d;
