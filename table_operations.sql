@@ -200,3 +200,15 @@ ALTER TABLE books RENAME TO my_books;
 
 
 SELECT * FROM my_books;
+
+
+-- Drop table
+-- Drop table if exists table_name;
+
+DROP Table if EXISTS table1;
+
+SELECT * FROM "students";
+
+DROP TABLE IF EXISTS my_books;
+
+SELECT * FROM my_books;
