@@ -212,3 +212,14 @@ SELECT * FROM "students";
 DROP TABLE IF EXISTS my_books;
 
 SELECT * FROM my_books;
+
+-- Truncate Table to remoe data from large tables quickly
+-- Truncate is more efficient than delete for a large table
+-- Truncate table table_name;
+
+SELECT * FROM students;
+
+
+TRUNCATE TABLE link;
+
+SELECT * FROM link;
