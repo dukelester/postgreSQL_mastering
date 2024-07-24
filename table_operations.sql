@@ -246,3 +246,28 @@ CREATE TABLE students_start_with_d as select * from students where first_name li
 SELECT * FROM students_start_with_d;
 
 DROP Table students_start_with_d;
+
+
+-- comparing tables
+-- Comparison using EXCEPT and UNION operators
+
+CREATE TABLE foo(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(200)
+);
+
+INSERT INTO foo (name) VALUES
+    ('foo'),('i am foo'), ('foo foo')
+;
+
+CREATE TABLE bar (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(230)
+);
+
+INSERT INTO bar (name) VALUES
+    ('bar'),('i am bar'), ('bar bar')
+;
+
+
+
