@@ -120,3 +120,30 @@ SELECT * FROM items;
 SELECT *, (price * quantity) as total_cost FROM items;
 
 SELECT product, (price - COALESCE(discount, 0)) as net_price FROM items;
+
+-- NULLIF()
+
+CREATE Table posts(
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    excerpt VARCHAR(150),
+    body TEXT,
+    created_at TIMESTAMP DEFAULT current_timestamp,
+    updated_at TIMESTAMP
+);
+
+INSERT INTO posts (title, excerpt, body)
+VALUES
+    ('test post 1','test post excerpt 1','test post body 1'),
+    ('test post 2','','test post body 2'),
+    ('test post 3', null ,'test post body 3');
+
+SELECT id, title, excerpt FROM posts;
+
+SELECT id, title, COALESCE (excerpt, LEFT(body, 40)) FROM posts;
+
+SELECT id, title, COALESCE ( 
+    NULLIF(excerpt, ''),
+    LEFT (body, 40)
+)
+FROM posts;
