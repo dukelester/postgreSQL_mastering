@@ -87,3 +87,36 @@ SELECT
         END
         ) AS "shorter_names"
 FROM students;
+
+-- COALESCE  -> used to handle the NULL values in the database
+
+CREATE TABLE items (
+    id SERIAL PRIMARY KEY,
+    product VARCHAR(100) NOT NULL,
+    price NUMERIC NOT NULL,
+    discount NUMERIC
+);
+
+INSERT INTO items (product, price, discount)
+VALUES
+    ('A', 100, 10),
+    ('B', 1500, 23),
+    ('C', 300, 6),
+    ('D', 6000, NULL);
+
+SELECT * FROM items;
+
+SELECT product, (price - discount) as net_price from items;
+
+ALTER table items ADD COLUMN quantity INTEGER;
+
+UPDATE items SET quantity = 20 WHERE price = 6000;
+UPDATE items SET quantity = 30 WHERE price = 300;
+UPDATE items SET quantity = 70 WHERE price = 100;
+UPDATE items SET quantity = 15 WHERE price = 1500;
+
+SELECT * FROM items;
+
+SELECT *, (price * quantity) as total_cost FROM items;
+
+SELECT product, (price - COALESCE(discount, 0)) as net_price FROM items;
