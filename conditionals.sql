@@ -147,3 +147,6 @@ SELECT id, title, COALESCE (
     LEFT (body, 40)
 )
 FROM posts;
+
+-- Cast - convert the value in the 
+SELECT CAST ('100', AS INTEGER);
