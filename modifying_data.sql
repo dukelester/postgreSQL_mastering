@@ -40,3 +40,11 @@ SELECT * FROM employees WHERE last_name = ' Signher';
 UPDATE employees SET  last_name = 'Joe' where first_name LIKE '%s';
 
 SELECT * FROM employees;
+
+-- SQL Delete 
+-- delete from table_name where condition
+
+DELETE FROM employees WHERE first_name LIKE '%s';
+
+
+SELECT * FROM employees;
