@@ -27,3 +27,16 @@ VALUES
 
 SELECT * FROM employees;
 
+--  Update
+-- UPDATE table
+-- SET column1 = value1,
+--     column2 = value2, ...
+-- WHERE condition;
+
+UPDATE employees SET last_name =' Signher' WHERE first_name = 'mathews';
+
+SELECT * FROM employees WHERE last_name = ' Signher';
+
+UPDATE employees SET  last_name = 'Joe' where first_name LIKE '%s';
+
+SELECT * FROM employees;
