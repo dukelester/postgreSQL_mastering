@@ -26,3 +26,4 @@ VALUES
 (6, 'mathews', 'jester', '0790424522', 5, 'makr4@gmail.com');
 
 SELECT * FROM employees;
+
