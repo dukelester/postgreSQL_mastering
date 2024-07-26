@@ -77,3 +77,38 @@ UPDATE bankstatements SET balance = 90000 WHERE customer_id = 2;
 ROLLBACK;
 
 SELECT customer_id, full_name, balance FROM bankstatements;
+
+-- primary Key -> a column which is used to identify a row in a table uniquely
+-- combines the not null constraint and unique constraint
+-- each table can have only one primary key
+
+
+CREATE TABLE books (
+    book_id INTEGER PRIMARY KEY,
+    title TEXT,
+    price INTEGER
+);
+
+
+INSERT INTO books (book_id, title, price) VALUES
+(1, 'The algebra', 300),
+(2, 'Calculus 3', 3400),
+(3, 'AI and machine learning', 800);
+
+
+SELECT * FROM books;
+
+CREATE TABLE vendors (
+    name VARCHAR(90)
+);
+
+INSERT INTO vendors (name) VALUES 
+    ('Microsoft'),('Google'), ('Lester Enterprises');
+
+
+ALTER TABLE vendors ADD COLUMN vendor_id SERIAL PRIMARY KEY;
+ALTER TABLE vendors DROP COLUMN vendor_id;
+
+ALTER TABLE vendors ADD COLUMN vendor_id bigserial PRIMARY KEY;
+
+SELECT * FROM vendors;
