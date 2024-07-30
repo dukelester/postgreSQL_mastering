@@ -112,3 +112,101 @@ ALTER TABLE vendors DROP COLUMN vendor_id;
 ALTER TABLE vendors ADD COLUMN vendor_id bigserial PRIMARY KEY;
 
 SELECT * FROM vendors;
+
+
+/* FOREIGN KEY
+A column which uniquely identifies a row in a different table
+Table with the foreign key is the child table or refrencing table.
+while the table being refrenced is the parent table.
+A table can have multiple foreign keys.
+
+syntax:
+FOREIGN KEY (column) REFERENCES parent_table (table_name)
+*/
+
+DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS contacts;
+
+CREATE TABLE customers(
+    customer_id INT generated always as identity,
+    customer_name VARCHAR NOT NULL,
+    PRIMARY KEY(customer_id)
+);
+
+
+CREATE TABLE contacts(
+    contact_id INT generated always as identity,
+    customer_id INT,
+    contact_name VARCHAR NOT NULL,
+    phone VARCHAR,
+    email VARCHAR(100),
+    PRIMARY KEY(contact_id),
+    constraint fk_customer FOREIGN KEY(customer_id) REFERENCES customers(customer_id)
+);
+
+INSERT INTO customers(customer_name)
+VALUES('GeeksforGeeks org'),
+      ('Dolphin LLC');       
+       
+INSERT INTO contacts(customer_id, contact_name, phone, email)
+VALUES (1, 'Raju kumar', '(408)-111-1234', 'raju.kumar@geeksforgeeks.org'),
+               (1, 'Raju kumar', '(408)-111-1235', 'raju.kumar@bluebird.dev'),
+               (2, 'Nikhil Aggarwal', '(408)-222-1234', 'nikhil.aggarwalt@geeksforgeeks.org');
+               
+CREATE TABLE customers(
+   customer_id INT GENERATED ALWAYS AS IDENTITY,
+   customer_name VARCHAR(255) NOT NULL,
+   PRIMARY KEY(customer_id)
+);
+
+CREATE TABLE contacts(
+    contact_id INT GENERATED ALWAYS AS IDENTITY,
+    customer_id INT,
+    contact_name VARCHAR(255) NOT NULL,
+    phone VARCHAR(15),
+    email VARCHAR(100),
+    PRIMARY KEY(contact_id),
+    CONSTRAINT fk_customer
+    FOREIGN KEY(customer_id) 
+    REFERENCES customers(customer_id)
+    ON DELETE SET NULL
+);
+
+INSERT INTO customers(customer_name)
+VALUES('GeeksforGeeks org'),
+    ('Dolphin LLC');       
+
+INSERT INTO contacts(customer_id, contact_name, phone, email)
+VALUES(1, 'Raju Kumar', '(408)-111-1234', 'raju.kumar@geeksforgeeks.org'),
+    (1, 'Raju Kumar', '(408)-111-1235', 'raju.kumar@bluebird.dev'),
+    (2, 'Nikhil Aggarwal', '(408)-222-1234', 'nikhil.aggarwal@geeksforgeeks.org');
+
+
+SELECT * FROM customers;
+
+DELETE FROM customers WHERE customer_id = 1;
+
+
+-- Check Constraint
+
+-- used to check if a value in a column meets a condition (uses boolean)
+-- syntax: variable_name data_type CHECK(expression)
+
+DROP TABLE owners;
+CREATE TABLE owners (
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(100),
+    birth_date DATE CHECK (birth_date > '1990-01-01'),
+    joined_date DATE CHECK (joined_date > birth_date),
+    salary NUMERIC CHECK (salary > 0)
+);
+
+
+INSERT INTO owners (first_name, last_name, birth_date, joined_date, salary)
+VALUES (
+    'mikey', 'mikey', '1994-01-01', '2024-02-09', 78000
+);
+
+SELECT * FROM owners;
+
