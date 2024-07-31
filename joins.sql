@@ -54,3 +54,41 @@ RIGHT JOIN zoo_two ON zoo.animal = zoo_two.animal;
 -- full outer join
 SELECT zoo.id, zoo.animal, zoo_two.id, zoo_two.animal FROM zoo
 FULL JOIN zoo_two ON zoo.animal = zoo_two.animal;
+
+/*  LEFT JOIN
+Combining tow or more tables.
+Returns matching tables columns from the left table and right table
+-
+sytanx
+
+
+SELECT table1.column1, table1.column2, table2.column1, ....
+FROM table1 
+LEFT JOIN table2
+ON table1.matching_column = table2.matching_column;
+
+table1: The primary table from which you want to select data.
+table2: The secondary table that you want to join with the primary table.
+matching_column: The common column between the two tables on which the join condition is based.
+
+
+*/
+
+SELECT
+    film.film_id,
+    film.title,
+    inventory_id
+FROM
+    film
+LEFT JOIN inventory ON inventory.film_id = film.film_id
+WHERE
+    inventory.film_id IS NULL;
+
+SELECT
+    film.film_id,
+    film.title,
+    inventory_id
+FROM
+    film
+LEFT JOIN inventory ON inventory.film_id = film.film_id;
+
