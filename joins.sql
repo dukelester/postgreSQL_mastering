@@ -160,3 +160,33 @@ SELECT * FROM employees;
 SELECT *
 FROM students s
 FULL OUTER JOIN employees e on e.first_name = s.first_name;
+
+
+/* SELF JOIN 
+is used to join a table with itself. It comes in handy when comparing 
+the column of rows within the same table.
+Syntax:
+SELECT column_list
+FROM table_name T1
+INNER JOIN table_name T2 ON join_predicate;
+
+or,
+
+Syntax:
+SELECT column_list
+FROM table_name T1
+LEFT JOIN table_name T2 ON join_predicate;
+
+or,
+
+Syntax:
+SELECT column_list
+FROM table_name T1
+RIGHT JOIN Table_name T2 ON join_predicate;
+*/
+
+SELECT e.first_name || ' ' || e.last_name,
+m.first_name || ' ' || m.last_name
+FROM
+employees e
+INNER JOIN employees m ON m.employee_id = e.employee_id;
