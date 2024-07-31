@@ -92,3 +92,54 @@ FROM
     film
 LEFT JOIN inventory ON inventory.film_id = film.film_id;
 
+
+/* INNER JOIN keyword selects all rows from both the 
+tables as long as the condition satisfies
+Syntax:
+SELECT table1.column1, table1.column2, table2.column1, ....
+FROM table1 
+INNER JOIN table2
+ON table1.matching_column = table2.matching_column;
+
+
+table1: First table.
+table2: Second table
+matching_column: Column common to both the tables.
+
+*/
+
+SELECT * FROM customers;
+
+-- names with d
+SELECT * FROM students;
+SELECT * FROM names_with_d;
+
+
+SELECT students.id id, students.first_name name, students.last_name
+FROM students
+LEFT JOIN names_with_d ON students.first_name = names_with_d.first_name;
+
+
+SELECT students.id, students.first_name, students.last_name
+FROM students
+INNER JOIN students_start_with_d ON students.last_name = students_start_with_d.first_name;
+
+
+SELECT students.id, students.first_name, students.last_name
+FROM students
+INNER JOIN students_start_with_d ON students.last_name = students_start_with_d.first_name
+WHERE students.last_name LIKE '%n';
+
+
+SELECT students.id, students.first_name, students.last_name
+FROM students
+INNER JOIN students_start_with_d ON students.last_name = students_start_with_d.first_name
+WHERE students.last_name LIKE '%n';
+
+-- joining three tables
+SELECT * FROM my_students;
+
+SELECT students.id, students.first_name, students.last_name
+FROM students
+INNER JOIN students_start_with_d ON students.first_name = students_start_with_d.first_name
+INNER JOIN names_with_d ON students_start_with_d.last_name = names_with_d.last_name;
