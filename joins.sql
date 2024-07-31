@@ -143,3 +143,20 @@ SELECT students.id, students.first_name, students.last_name
 FROM students
 INNER JOIN students_start_with_d ON students.first_name = students_start_with_d.first_name
 INNER JOIN names_with_d ON students_start_with_d.last_name = names_with_d.last_name;
+
+
+/*
+FULL OUTER JOIN, also known as FULL JOIN, combines the results of both LEFT JOIN and RIGHT JOIN. This join type retrieves
+all rows from both tables involved, including unmatched rows where applicable, filling in NULL values for columns that
+do not have a match.
+SELECT table1.column1, table1.column2, table2.column1, ....
+FROM table1 
+FULL JOIN table2 ON table1.matching_column = table2.matching_column;
+
+*/
+
+SELECT * FROM employees;
+
+SELECT *
+FROM students s
+FULL OUTER JOIN employees e on e.first_name = s.first_name;
