@@ -49,3 +49,66 @@ ORDER BY name ASC, amount DESC;
 SELECT first_name, last_name FROM students UNION 
 SELECT first_name, last_name FROM employees;
 
+-- INTERSECT Operator
+/*
+used to combine two or more result sets returned by SELECT statements and return the
+common data among the tables into a single result set. This is useful for identifying
+overlapping data between tables.
+SELECT
+    column_list
+FROM A
+INTERSECT
+SELECT
+    column_list
+FROM B;
+*/
+
+CREATE TABLE agent(
+    agent_id serial PRIMARY KEY,
+    agent_name VARCHAR (255) NOT NULL
+);
+CREATE TABLE op_CHI(
+    agent_id INT PRIMARY KEY,
+    active_date DATE NOT NULL,
+    FOREIGN KEY (agent_id) REFERENCES agent (agent_id)
+);
+CREATE TABLE op_PAk(
+    agent_id INT PRIMARY KEY,
+    active_date DATE NOT NULL,
+    FOREIGN KEY (agent_id) REFERENCES agent (agent_id)
+);
+INSERT INTO agent(agent_name)
+VALUES
+    ('Tiger'),
+    ('James Bond'),
+    ('Jason Bourne'),
+    ('Ethan Hunt'),
+    ('Ajit Doval'),
+    ('Rowdy Rathore'),
+    ('Milkha Singh'),
+    ('Tom Hanks'),
+    ('Sabana'),
+    ('Razia Sultan');
+
+INSERT INTO op_chi
+VALUES
+    (1, '2000-02-01'),
+    (2, '2001-06-01'),
+    (5, '2002-01-01'),
+    (7, '2005-06-01');
+
+INSERT INTO op_pak
+VALUES
+    (9, '2000-01-01'),
+    (2, '2002-06-01'),
+    (5, '2006-06-01'),
+    (10, '2005-06-01');
+
+SELECT agent_id FROM op_chi
+INTERSECT
+SELECT agent_id FROM op_pak;
+
+SELECT agent_id FROM op_chi
+INTERSECT
+SELECT agent_id FROM op_pak
+ORDER BY agent_id;
