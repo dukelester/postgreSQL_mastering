@@ -24,3 +24,14 @@ ALTER ROLE ravi superuser;
 ALTER ROLE ravi VALID UNTIL '2024-10-08';
 
 ALTER ROLE ravi CREATEDB;
+
+ALTER ROLE ravi createrole;
+ALTER ROLE ravi CONNECTION LIMIT 20000;
+-- DROP ROLE
+-- DROP ROLE [IF EXISTS] target_role;
+
+DROP ROLE if EXISTS test;
+
+DROP ROLE if EXISTS role_1;
+
+DROP ROLE if EXISTS user_one, nikhil;
