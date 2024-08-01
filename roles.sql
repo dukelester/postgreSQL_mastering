@@ -93,6 +93,7 @@ GRANT ALL on students to monica;
 
 GRANT SELECT on employees to monica;
 
+CREATE ROLE hello;
 
 update students set first_name = 'duke' where last_name = 'Poole';
 
