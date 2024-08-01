@@ -73,4 +73,29 @@ VALUES('kenny', 'mokie', 'jas.kumar@lester.org', '408-333-2222');
 INSERT INTO players(first_name, last_name, email, phone)
 VALUES('mokie', 'mary', 'mary.jase@lester.org', '408-787-2292');
 
+
+GRANT ALL ON players to anshul;
+
 CREATE ROLE dlester login PASSWORD 'lester';
+
+-- REVOKE
+/*
+REVOKE statement is used to revoke previously granted privileges on database objects through a role.
+Syntax: 
+REVOKE privilege | ALL
+ON TABLE tbl_name |  ALL TABLES IN SCHEMA schema_name
+FROM role_name;
+*/
+
+CREATE ROLE monica login PASSWORD 'monica';
+
+GRANT ALL on students to monica;
+
+GRANT SELECT on employees to monica;
+
+
+update students set first_name = 'duke' where last_name = 'Poole';
+
+REVOKE SELECT on employees FROM monica;
+
+REVOKE ALL on  students FROM monica;
